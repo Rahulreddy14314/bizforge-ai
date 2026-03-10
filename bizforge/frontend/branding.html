@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizForge Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ce3b21659a.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <a href="index.html" class="gradient-text"><i class="fa-solid fa-fire-flame-curved"></i> BizForge</a>
+            </div>
+            <nav class="side-nav">
+                <button class="tab-btn active" data-target="idea"><i class="fa-solid fa-lightbulb"></i> Startup
+                    Ideas</button>
+                <button class="tab-btn" data-target="names"><i class="fa-solid fa-signature"></i> Brand
+                    Names</button>
+                <button class="tab-btn" data-target="logo"><i class="fa-solid fa-images"></i> Logo Generator</button>
+                <button class="tab-btn" data-target="colors"><i class="fa-solid fa-palette"></i> Design System</button>
+                <button class="tab-btn" data-target="content"><i class="fa-solid fa-bullhorn"></i> Content</button>
+                <button class="tab-btn" data-target="sentiment"><i class="fa-solid fa-magnifying-glass-chart"></i>
+                    Review Analyzer</button>
+                <button class="tab-btn" data-target="chat"><i class="fa-solid fa-robot"></i> AI Chat</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Startup Idea Generator Tab -->
+            <section id="idea" class="tab-content active glass-panel">
+                <h2><i class="fa-solid fa-lightbulb"></i> AI Startup Idea Generator</h2>
+                <form id="idea-form" class="ai-form">
+                    <div class="form-group">
+                        <label>Interests, Industries, or Keywords</label>
+                        <input type="text" id="idea-keywords" placeholder="e.g. Food + AI, Space Travel + Education"
+                            required>
+                    </div>
+                    <button type="submit" class="submit-btn primary-btn"><i class="fa-solid fa-bolt"></i> Generate
+                        Idea</button>
+                </form>
+                <div class="results-container" id="idea-results" style="display: none;">
+                    <h3>Generated Startup Idea</h3>
+                    <div class="loader" style="display: none;"></div>
+                    <div class="result-text" id="idea-text"></div>
+                </div>
+            </section>
+
+            <!-- Brand Names Tab -->
+            <section id="names" class="tab-content glass-panel">
+                <h2><i class="fa-solid fa-signature"></i> Brand Name Generator</h2>
+                <form id="brand-form" class="ai-form">
+                    <div class="form-group">
+                        <label>Industry</label>
+                        <input type="text" id="brand-industry" placeholder="e.g. SaaS, Coffee Shop, FinTech" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Keywords</label>
+                        <input type="text" id="brand-keywords" placeholder="e.g. fast, simple, eco-friendly" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tone</label>
+                            <select id="brand-tone">
+                                <option value="professional">Professional</option>
+                                <option value="playful">Playful</option>
+                                <option value="modern">Modern & Edgy</option>
+                                <option value="luxurious">Luxurious</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Language</label>
+                            <input type="text" id="brand-language" value="English" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn primary-btn"><i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Generate Names</button>
+                </form>
+                <div class="results-container" id="brand-results" style="display: none;">
+                    <h3>Generated Names</h3>
+                    <div class="loader" style="display: none;"></div>
+                    <ul class="results-list"></ul>
+                </div>
+            </section>
+
+            <!-- Logo Generator Tab -->
+            <section id="logo" class="tab-content glass-panel">
+                <h2><i class="fa-solid fa-images"></i> Logo Generator</h2>
+                <form id="logo-form" class="ai-form">
+                    <div class="form-group">
+                        <label>Brand Name</label>
+                        <input type="text" id="logo-name" placeholder="Enter your brand name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Industry</label>
+                        <input type="text" id="logo-industry" placeholder="e.g. Technology, Food" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Style</label>
+                        <select id="logo-style">
+                            <option value="minimalist vector app icon">Minimalist App Icon</option>
+                            <option value="modern geometric corporate logo">Modern Corporate</option>
+                            <option value="vintage retro emblem">Vintage Emblem</option>
+                            <option value="playful colorful mascot">Playful Mascot</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn primary-btn"><i class="fa-solid fa-paintbrush"></i> Generate
+                        Logo</button>
+                </form>
+                <div class="results-container" id="logo-results" style="display: none;">
+                    <h3>Your Logo</h3>
+                    <div class="loader" style="display: none;"></div>
+                    <div class="image-preview">
+                        <img id="logo-img" src="" alt="Generated Logo">
+                    </div>
+                    <p class="prompt-text"><strong>Prompt Refined:</strong> <span id="logo-prompt"></span></p>
+                </div>
+            </section>
+
+            <!-- Design System Tab -->
+            <section id="colors" class="tab-content glass-panel">
+                <h2><i class="fa-solid fa-palette"></i> Design System Generator</h2>
+                <form id="colors-form" class="ai-form">
+                    <div class="form-group">
+                        <label>Industry</label>
+                        <input type="text" id="color-industry" placeholder="e.g. Healthcare, Fashion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Vibes / Emotion</label>
+                        <input type="text" id="color-vibes" placeholder="e.g. Trusting, Energetic, Calm" required>
+                    </div>
+                    <button type="submit" class="submit-btn primary-btn"><i class="fa-solid fa-droplet"></i> Get Color
+                        Palette</button>
+                </form>
+                <div class="results-container" id="colors-results" style="display: none;">
+                    <h3>Color Palette</h3>
+                    <div class="loader" style="display: none;"></div>
+                    <div class="palette-grid" id="palette-grid">
+                        <!-- Colors inject here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marketing Content Tab -->
+            <section id="content" class="tab-content glass-panel">
+                <h2><i class="fa-solid fa-bullhorn"></i> Marketing Content</h2>
+                <form id="content-form" class="ai-form">
+                    <div class="form-group">
+                        <label>Product / Feature</label>
+                        <textarea id="content-product" rows="3" placeholder="Describe your product briefly..."
+                            required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Content Type</label>
+                            <select id="content-type">
+                                <option value="product description">Product Description</option>
+                                <option value="Facebook/Instagram Ad Copy">Ad Copy</option>
+                                <option value="Instagram caption">Social Media Caption</option>
+                                <option value="email marketing campaign">Email Marketing text</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tone</label>
+                            <select id="content-tone">
+                                <option value="persuasive">Persuasive</option>
+                                <option value="funny/witty">Funny & Witty</option>
+                                <option value="urgent/promotional">Urgent & Promotional</option>
+                                <option value="informative">Informative</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn primary-btn"><i class="fa-solid fa-pen-nib"></i> Generate
+                        Content</button>
+                </form>
+                <div class="results-container" id="content-results" style="display: none;">
+                    <h3>Generated Content</h3>
+                    <div class="loader" style="display: none;"></div>
+                    <div class="result-text" id="content-text"></div>
+                </div>
+            </section>
+
+            <!-- Sentiment Analyzer Tab -->
+            <section id="sentiment" class="tab-content glass-panel">
+                <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Review / Text Analyzer</h2>
+                <form id="sentiment-form" class="ai-form">
+                    <div class="form-group">
+                        <label>Customer Review or Text</label>
+                        <textarea id="sentiment-text" rows="4" placeholder="Paste the text to analyze here..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn primary-btn"><i class="fa-solid fa-microscope"></i> Analyze
+                        Text</button>
+                </form>
+                <div class="results-container" id="sentiment-results" style="display: none;">
+                    <div class="loader" style="display: none;"></div>
+                    <div class="sentiment-metrics">
+                        <div class="metric-box">
+                            <h4>Sentiment</h4>
+                            <span class="badge" id="sentiment-badge">Unknown</span>
+                        </div>
+                        <div class="metric-box">
+                            <h4>Confidence</h4>
+                            <span class="metric-value" id="sentiment-confidence">-</span>
+                        </div>
+                    </div>
+                    <h3>Rewritten / Optimized Version</h3>
+                    <div class="result-text" id="sentiment-rewrite"></div>
+                </div>
+            </section>
+
+            <!-- AI Chat Tab -->
+            <section id="chat" class="tab-content glass-panel chat-layout">
+                <h2><i class="fa-solid fa-robot"></i> Branding Strategist (IBM Granite)</h2>
+
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message assistant">
+                            <div class="bubble">Hello! I'm BizForge's branding strategist powered by IBM Granite. How
+                                can I help you build your brand today?</div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <button type="button" id="voice-btn" class="icon-btn" title="Voice Input"><i
+                                class="fa-solid fa-microphone"></i></button>
+                        <input type="text" id="chat-input"
+                            placeholder="Ask about naming, marketing strategy, or design..." autocomplete="off">
+                        <button type="button" id="send-btn" class="icon-btn primary-btn"><i
+                                class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
